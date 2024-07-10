@@ -14,3 +14,12 @@ Route::prefix('/categorie')->group(function () {
     Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
 
 });
+
+
+route::get ('/products',function (){
+    return 'Hello World';
+});
+
+    route::get ('/products/{id}',function ($id){
+        return 'Hello '.$id;
+    });
