@@ -22,7 +22,6 @@ return view('welcome'); => lorsque j'accede a la page racine, il faut que tu rep
 
 */
 
-
     Route::get('/user', [UserController::class, 'index']);
 
 Route::get('/categorie', function () {
