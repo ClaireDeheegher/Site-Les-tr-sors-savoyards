@@ -17,4 +17,3 @@ Route::prefix('/categorie')->group(function () {
     Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
 
 });
-
