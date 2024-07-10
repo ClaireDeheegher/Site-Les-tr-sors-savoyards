@@ -9,8 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::get('/blog', [GererController::class, 'index']);
+Route::get('/categorie', function () {
+    return 'Liste des catégories';
+});
 
-
-
-
+Route::get('/categorie/{id}', function () {
+    return 'Page catégorie';
+});
