@@ -24,6 +24,5 @@ class CategorieController extends Controller //Classe qui va servir de controlle
 
         return $categorie;
 
-
     }
 }
