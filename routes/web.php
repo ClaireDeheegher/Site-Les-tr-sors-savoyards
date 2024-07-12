@@ -1,12 +1,14 @@
 <?php
 
+
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\GererController;
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 /*ROUTE TEST
 Route => on utilise une class definit dans ce namespace: "use Illuminate\Support\Facades\Route;"
@@ -21,3 +23,5 @@ return view('welcome'); => lorsque j'accede a la page racine, il faut que tu rep
 
 
     Route::get('/user', [UserController::class, 'index']);
+    Route::get('/blog', [GererController::class, 'index']);
+
