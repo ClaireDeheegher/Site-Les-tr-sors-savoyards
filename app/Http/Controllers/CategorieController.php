@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 class CategorieController extends Controller
 {
-    public function index() : string
+    public function index(): array
     {
-        return 'Liste des catégories';
+        return [
+            'name' => 'Categorie',
+        ];
     }
 
-    public function showCategorie(string $id,) : string
+    public function showCategorie(string $id): array
     {
-        return 'Page catégorie'.$id;
+        return [
+            'name' => 'Categorie',
+            'id' => $id,
+        ];
     }
 }
