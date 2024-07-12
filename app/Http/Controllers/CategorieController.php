@@ -16,6 +16,5 @@ class CategorieController extends Controller
     {
         $categorie = new \App\Models\Categorie;
         return \App\Models\Categorie::all('name');
-
     }
 }
