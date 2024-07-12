@@ -24,7 +24,6 @@ route::prefix('/Produits')->group(function () {
     Route::get('/{id}', [\App\Http\Controllers\ProductController::class, 'ShowProduits']);
 });
 
-
     Route::resource('users', UserController::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 
