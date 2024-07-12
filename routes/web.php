@@ -9,10 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/categorie', function () {
-    return 'Liste des catégories';
-});
+Route::prefix('/categorie')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CategorieController::class, 'index']);
 
-Route::get('/categorie/{id}', function () {
-    return 'Page catégorie';
+    Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
+
 });
