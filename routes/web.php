@@ -23,12 +23,13 @@ route::prefix('/Produits')->group(function () {
 
     Route::get('/user', [UserController::class, 'index']);
 
-Route::prefix('/categorie')->group(function () {
-    Route::get('/', [\App\Http\Controllers\CategorieController::class, 'index']);
+    Route::prefix('/categorie')->group(function () {
+        Route::get('/', [\App\Http\Controllers\CategorieController::class, 'index']);
 
-    Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
-});
+        Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
+    });
 
     Route::resource('users', UserController::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::resource('carts', CartController::class);
+});
