@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 class CategorieController extends Controller
 {
-    public function index(): array
+    public function index()
     {
-        return [
-            'name' => 'Categorie',
-        ];
+        $categorie = new \App\Models\Categorie;
+        $categorie->name = 'Fromage';
+        $categorie->save();
+        return \App\Models\Categorie::all();
     }
 
-    public function showCategorie(string $id): array
+    public function showCategorie(string $id)
     {
-        return [
-            'name' => 'Categorie',
-            'id' => $id,
-        ];
+        $categorie = new \App\Models\Categorie;
+        return \App\Models\Categorie::all('name');
+
     }
 }
