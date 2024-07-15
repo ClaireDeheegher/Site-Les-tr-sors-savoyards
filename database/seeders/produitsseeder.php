@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\Cast\Double;
 use Ramsey\Uuid\Type\Integer;
+use Illuminate\Support\Facades\File;
 
 class produitsseeder extends Seeder
 {
@@ -19,20 +20,20 @@ class produitsseeder extends Seeder
      */
     public function run(): void
     {
+        $json = File::get("database/seeders/produits.json");
+        $data = json_decode($json);
 
-        $produits = [];
+        foreach ($data as $obj) {
+            DB::table('produits')->insert([
+                'nom' => $obj->nom,
+                'description' => $obj->description,
+                'prix' => $obj->prix,
+                'quantite' => $obj->quantite,
+                'poid' => $obj->poid,
+                'categorie_id' => $obj->categorie_id,
 
-        for($i = 0; $i < 10; $i++){
-            $produits[] = [
-                'nom' => Str::random(10),
-                'prix' => rand(10, 200),
-                'quantite' => rand(1,10),
-                'poid' => rand(20, 100),
-                'description' => Str::random(10),
-                'categorie_id' => rand(1, 5),
-            ];
+            ]);
         }
-        DB::table('produits')->insert($produits);
     }
-
 }
+
