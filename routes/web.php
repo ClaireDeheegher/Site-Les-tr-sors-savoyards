@@ -7,6 +7,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('/categorie')->group(function () {
+
+
     Route::get('/', [\App\Http\Controllers\CategorieController::class, 'index']);
 
     Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
