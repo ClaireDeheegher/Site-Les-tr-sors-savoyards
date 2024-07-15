@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
     public function index()
