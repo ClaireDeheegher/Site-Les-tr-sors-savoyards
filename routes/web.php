@@ -42,6 +42,8 @@ Route::prefix('/categorie')->group(function () {
 
     Route::get('/{id}', [\App\Http\Controllers\CategorieController::class, 'showCategorie']);
 
+    Route::resource('carts', CartController::class);
+
 });
 
     Route::resource('users', UserController::class);
