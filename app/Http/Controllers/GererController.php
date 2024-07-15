@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class GererController extends Controller
 {
     public function index() {
-        /*$test = [
-            "Article" => 'Article5',
-        ];*/
-        return "hello world";
+        $test = [
+            'Article' => 'Article5'
+        ];
+        return response()->json($test);
 
     }
 }
