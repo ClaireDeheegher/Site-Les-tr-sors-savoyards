@@ -16,7 +16,6 @@ class CategorieController extends Controller //Classe qui va servir de controlle
 
     public function showCategorie(string $id)
     {
-
         $categorie = \App\Models\Categorie::all();
 
         dd($categorie[$id]->name);
