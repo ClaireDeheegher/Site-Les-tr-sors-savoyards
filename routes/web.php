@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -24,4 +23,4 @@ route::get ('/products',function (){
     route::get ('/products/{id}',function ($id){
         return 'Hello '.$id;
     });
->>>>>>> b590524 (Ajout du ProductController et modification des routes)
+

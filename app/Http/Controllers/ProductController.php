@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
+
 use Illuminate\Http\JsonResponse;
 use \App\Models\Produits;
 use \Illuminate\Database\Eloquent\Collection;
@@ -31,31 +31,34 @@ class ProductController extends Controller
             'poid' => 'required',
             'categorie_id' => 'required|integer',
         ]);
-=======
->>>>>>> b590524 (Ajout du ProductController et modification des routes)
 
-use Illuminate\Http\Request;
 
-class ProductController extends Controller
-{
+    use Illuminate\Http\Request;
 
-<<<<<<< HEAD
+        class ProductController extends Controller
+        {
+
+
         $product = Produits::create($validatedData);
         return response()->json($product, 201);
+        }
+
+        public
+        function update(Request $request, $id)
+        {
+            $validatedData = $request->validate([]);
+            $product = Produits::findOrFail($id);
+            $product->update($validatedData);
+            return response()->json($product);
+        }
+
+        public
+        function destroy($id)
+        {
+            $product = Produits::findOrFail($id);
+            $product->delete();
+            return response()->json(null, 204);
+        }
+
     }
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([]);
-        $product = Produits::findOrFail($id);
-        $product->update($validatedData);
-        return response()->json($product);
-    }
-    public function destroy($id)
-    {
-        $product = Produits::findOrFail($id);
-        $product->delete();
-        return response()->json(null, 204);
-    }
-=======
->>>>>>> b590524 (Ajout du ProductController et modification des routes)
 }
