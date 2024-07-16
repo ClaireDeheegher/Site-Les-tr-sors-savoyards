@@ -16,12 +16,12 @@ Route::prefix('/categorie')->group(function () {
 });
 
 route::prefix('/Produits')->group(function () {
-
-
     Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
 
     Route::get('/{id}', [\App\Http\Controllers\ProductController::class, 'ShowProduits']);
-
 });
 
+
+    Route::resource('users', UserController::class);
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 
