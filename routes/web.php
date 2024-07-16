@@ -29,4 +29,4 @@ return view('welcome');
     Route::resource('users', UserController::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 
-    Route::resource('carts', CartController::class);
+
