@@ -21,6 +21,7 @@
 
         public function store(Request $request)
         {
+
             $user = new User([
                 'name' => $request->input('name'),
                 'lastname' => $request->input('lastname'),
