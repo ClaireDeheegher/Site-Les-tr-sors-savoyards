@@ -1,6 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
 return view('welcome');
@@ -25,3 +29,4 @@ route::prefix('/Produits')->group(function () {
     Route::resource('users', UserController::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 
+    Route::resource('carts', CartController::class);
