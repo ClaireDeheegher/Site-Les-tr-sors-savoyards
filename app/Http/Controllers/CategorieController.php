@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Produits;
+use Illuminate\Http\Request;
 
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
@@ -26,4 +29,14 @@ class CategorieController extends Controller //Classe qui va servir de controlle
 
 
     }
+//  //  public function relation(Request $request)
+//    {
+//
+//        $product = new Produits($request->product);
+//
+//        $category = Categorie::find($request->categorie);
+//
+//        return $category->products()->save($product);
+//
+//    }//
 }
