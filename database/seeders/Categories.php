@@ -2,20 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class Categories extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            'name'=>Str::random(10),
-        ]);
+        $categories = [
+            ['id' => 1, 'name' => 'Fromages'],
+            ['id' => 2, 'name' => 'Charcuterie'],
+            ['id' => 3, 'name' => 'Vins'],
+            ['id' => 4, 'name' => 'Pâtes'],
+            ['id' => 5, 'name' => 'Miel'],
+        ];
+
+        DB::table('categories')->insert($categories);
     }
 }
+
