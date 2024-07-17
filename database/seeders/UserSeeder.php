@@ -1,44 +1,18 @@
 <?php
 
-namespace Database\Seeders;
+    namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
+    use Illuminate\Database\Seeder;
+    use App\Models\User;
 
-class UserSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    class UserSeeder extends Seeder
     {
-        $users = [];
-
-        for ($i = 0; $i < 10; $i++) { // Par exemple, créer 10 utilisateurs
-            $birthdate = Carbon::now()->subYears(rand(18, 65))->subDays(rand(0, 365));
-
-            $users[] = [
-                'name' => Str::random(10),
-                'lastname' => Str::random(10),
-                'birthday' => $birthdate,
-                'email' => Str::random(10).'@example.com',
-                'password' => Hash::make('password'),
-                'gender' => $i % 2 == 0 ? 'M' : 'F', // Exemple: alterner entre 'M' et 'F' pour le genre
-                'phone' => Str::random(10), // Générer un numéro de téléphone aléatoire
-                'address' => Str::random(20), // Générer une adresse aléatoire
-                'address2' => '', // Laisser vide ou générer si nécessaire
-                'zipcode' => Str::random(5), // Générer un code postal aléatoire
-                'town' => Str::random(10), // Générer une ville aléatoire
-                'country' => 'France', // Par exemple, fixer le pays comme 'France'
-                'email_verified_at' => now(), // Marquer comme vérifié à la date actuelle
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+        /**
+         * Run the database seeds.
+         */
+        public function run()
+        {
+            // Créer 10 utilisateurs en utilisant la factory
+            User::factory()->count(10)->create();
         }
-
-        DB::table('users')->insert($users);
     }
-}
