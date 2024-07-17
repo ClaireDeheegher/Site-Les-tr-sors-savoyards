@@ -9,7 +9,7 @@ class Cart extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'quantity', // Ajoutez les champs que vous souhaitez rendre accessibles en écriture
+        'ref', // Ajoutez les champs que vous souhaitez rendre accessibles en écriture
     ];
     protected $table =
         'cart'; // Assurez-vous que le nom de la table est correctement défini ici

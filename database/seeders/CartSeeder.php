@@ -15,7 +15,9 @@ class CartSeeder extends Seeder
     public function run(): void
     {
         DB::table('cart')->insert([
-            'quantity'=>rand(1, 10),
+            'ref'=>rand(1, 1000),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
     }
