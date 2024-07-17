@@ -18,7 +18,7 @@ Schema::create('produits', function (Blueprint $table) {
     $table->double('quantite');
     $table->double('poid');
     $table->string('description');
-$table->foreignId('categorie_id')->constrained('categories');
+    $table->foreignId('categorie_id')->constrained('categories');
 });
     }
 

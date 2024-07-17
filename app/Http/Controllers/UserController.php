@@ -4,36 +4,23 @@
 
     use App\Models\User;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Hash;
 
     class UserController extends Controller
     {
         public function index()
         {
             $users = User::all();
-            return view('users.index', compact('users'));
+            return response()->json($users);
         }
 
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-         */
         public function create()
         {
             return view('users.create');
         }
 
-        /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function store(Request $request)
         {
-            // Validation du formulaire (à ajouter si nécessaire)
-
-            // Création d'un nouvel utilisateur
             $user = new User([
                 'name' => $request->input('name'),
                 'lastname' => $request->input('lastname'),
@@ -51,20 +38,66 @@
 
             $user->save();
 
-            return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès!');
+            return response()->json(['message' => 'Utilisateur créé avec succès!', 'user' => $user]);
         }
 
-        /**
-         * Display the specified resource.
-         *
-         * @param  int  $id
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-         */
         public function show($id)
         {
             $user = User::findOrFail($id);
-            return view('users.show', compact('user'));
+            return response()->json($user);
         }
 
-    }
+        public function edit($id)
+        {
+            $user = User::findOrFail($id);
+            return view('users.edit', compact('user'));
+        }
 
+        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+        {
+            $request->validate([
+                'name' => "required|string",
+                'lastname' => "required|string",
+                'birthday' => "required|date",
+                'gender' => "required|string",
+                'phone' => "required|string",
+                'address' => "required|string",
+                'address2' => "nullable|string",
+                'zipcode' => "required|string",
+                'town' => "required|string",
+                'country' => "required|string",
+                'email' => "required|string|email",
+                'password' => "nullable|string",
+            ]);
+
+            $user = User::findOrFail($id);
+
+            $user->name = $request->get('name');
+            $user->lastname = $request->get('lastname');
+            $user->birthday = $request->get('birthday');
+            $user->gender = $request->get('gender');
+            $user->phone = $request->get('phone');
+            $user->address = $request->get('address');
+            $user->address2 = $request->get('address2');
+            $user->zipcode = $request->get('zipcode');
+            $user->town = $request->get('town');
+            $user->country = $request->get('country');
+            $user->email = $request->get('email');
+
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->get('password'));
+            }
+
+            $user->save();
+
+            return response()->json(['message' => 'Utilisateur mis à jour avec succès.']);
+        }
+
+        public function destroy($id)
+        {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            return response()->json(['message' => 'Utilisateur supprimé avec succès.']);
+        }
+    }
