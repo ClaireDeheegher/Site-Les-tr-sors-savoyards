@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
+            $table->morphs('tokenable');
             $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
+            $table->timestamps();
         });
-    Schema::table('cat', function (Blueprint $table) {
-        $table->foreignId('category_id')->constrained('categories');
-    });
     }
 
     /**
@@ -25,9 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('categories');
-    Schema::table('cat', function (Blueprint $table) {
-        $table->dropForeign('cat_category_id_foreign');
-    });
+        Schema::dropIfExists('personal_access_tokens');
     }
 };

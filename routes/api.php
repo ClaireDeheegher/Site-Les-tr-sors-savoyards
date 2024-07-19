@@ -23,14 +23,18 @@
     });
 
 // Routes pour les produits
-    Route::prefix('produits')->group(function () {
-        Route::get('/', [ProductController::class, 'index'])->name('products.index');
+    route::prefix('/produits')->group(function () {
+        Route::get('/', [ProductController::class, 'index']);
+        Route::get('/{id}', [ProductController::class, 'ShowProduits']);
+        Route::post('/', [ProductController::class, 'products']);
+        Route::put('/{id}', [ProductController::class, 'update']);
+        Route::delete('/{id}', [ProductController::class, 'destroy']);
     });
 
 // Routes pour les catégories
-    Route::prefix('categories')->group(function () {
-        Route::get('/', [CategorieController::class, 'index'])->name('categories.index');
-        Route::get('/{id}', [CategorieController::class, 'showCategorie'])->name('categories.show');
+    Route::prefix('/categorie')->group(function () {
+        Route::get('/', [CategorieController::class, 'index']);
+        Route::get('/{id}', [CategorieController::class, 'showCategorie']);
     });
 
 // Routes pour les paniers
