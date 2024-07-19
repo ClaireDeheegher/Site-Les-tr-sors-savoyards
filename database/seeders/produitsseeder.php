@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\File;
 
 class produitsseeder extends Seeder
 {
-
-    /**
-     * Run the database seeds.
-     *
-     */
     public function run(): void
     {
         $json = File::get("database/seeders/produits.json");
         $data = json_decode($json);
 
+        if ($data === null) {
+            throw new \Exception('Le fichier JSON est vide ou invalide.');
+        }
+
         foreach ($data as $obj) {
+            if (!isset($obj->nom, $obj->description, $obj->prix, $obj->quantite, $obj->poid, $obj->categorie_id)) {
+                throw new \Exception('Données JSON manquantes pour l\'un des produits.');
+            }
+
             DB::table('produits')->insert([
                 'nom' => $obj->nom,
                 'description' => $obj->description,
@@ -31,9 +34,14 @@ class produitsseeder extends Seeder
                 'quantite' => $obj->quantite,
                 'poid' => $obj->poid,
                 'categorie_id' => $obj->categorie_id,
-
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
+
+    }
+
+    public function timestamps()
+    {
     }
 }
-

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use \App\Models\Categorie;
+
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
     public function index()
     {
-        $categorie = new \App\Models\Categorie(); // Appel du modèle et de la db
+        $categorie = new Categorie(); // Appel du modèle et de la db
 
         /* $categorie->name = 'Epicerie'; # Création d'une nouvelle ligne dans la db avec le nom de la catégorie
          $categorie->save();*/
@@ -16,11 +18,11 @@ class CategorieController extends Controller //Classe qui va servir de controlle
 
     public function showCategorie(string $id)
     {
-        $categorie = \App\Models\Categorie::all();
+
+        $categorie = Categorie::all();
 
         dd($categorie[$id]->name);
 
         return $categorie;
-
     }
 }
