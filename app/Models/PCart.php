@@ -13,14 +13,11 @@ class PCart extends Model
         'products_Id',
         'quantity',
     ];
-
-    public function produits(): HasMany
-    {
+    public function produits() : HasMany{
         return $this->hasMany(Produits::class);
     }
 
-    public function cart(): HasOne
-    {
+    public function cart() : HasOne{
         return $this->hasOne(Cart::class);
     }
 
