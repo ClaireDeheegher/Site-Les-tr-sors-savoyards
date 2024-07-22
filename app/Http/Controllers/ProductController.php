@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\JsonResponse;
 use \App\Models\Produits;
 use \Illuminate\Database\Eloquent\Collection;
@@ -33,32 +32,21 @@ class ProductController extends Controller
         ]);
 
 
-    use Illuminate\Http\Request;
-
-        class ProductController extends Controller
-        {
-
 
         $product = Produits::create($validatedData);
         return response()->json($product, 201);
-        }
-
-        public
-        function update(Request $request, $id)
-        {
-            $validatedData = $request->validate([]);
-            $product = Produits::findOrFail($id);
-            $product->update($validatedData);
-            return response()->json($product);
-        }
-
-        public
-        function destroy($id)
-        {
-            $product = Produits::findOrFail($id);
-            $product->delete();
-            return response()->json(null, 204);
-        }
-
+    }
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([]);
+        $product = Produits::findOrFail($id);
+        $product->update($validatedData);
+        return response()->json($product);
+    }
+    public function destroy($id)
+    {
+        $product = Produits::findOrFail($id);
+        $product->delete();
+        return response()->json(null, 204);
     }
 }
