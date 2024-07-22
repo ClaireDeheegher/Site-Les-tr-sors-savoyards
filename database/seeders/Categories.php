@@ -9,6 +9,7 @@ class Categories extends Seeder
 {
     public function run(): void
     {
+        DB::table('categories')->insert($categories);
         $categories = [
             ['id' => 1, 'name' => 'Fromages'],
             ['id' => 2, 'name' => 'Charcuterie'],
@@ -17,7 +18,6 @@ class Categories extends Seeder
             ['id' => 5, 'name' => 'Miel'],
         ];
 
-        DB::table('categories')->insert($categories);
     }
 }
 
