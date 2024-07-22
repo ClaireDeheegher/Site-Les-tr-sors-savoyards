@@ -18,7 +18,7 @@ class cartFactory extends Factory
     {
         return [
             'id' => $this->faker->numberBetween(1, 10),
-            'quantity' => $this->faker->numberBetween(1, 10),
+            'ref' => $this->faker->numberBetween(1, 1000),
             //
         ];
     }
