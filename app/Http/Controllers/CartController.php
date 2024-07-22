@@ -73,7 +73,7 @@ class CartController extends Controller
         ]);
 
         $cart = Cart::findOrFail($id);
-        $cart->quantity = $request->get('ref');
+        $cart->ref = $request->get('ref');
         $cart->save();
 
         //return redirect('/carts')->with('success', 'Cart has been updated');

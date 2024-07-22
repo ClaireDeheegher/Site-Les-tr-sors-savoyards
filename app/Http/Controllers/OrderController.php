@@ -17,7 +17,7 @@ class OrderController extends Controller
         return $orders;
     }
 
-    public function create(Request $request): \Illuminate\Http\JsonResponse
+    public function create(Request $request): Order
     {
         $request->validate([
             'lastname_id' => 'required',
@@ -43,7 +43,7 @@ class OrderController extends Controller
         $order->productprice_id = $request->productprice_id;
         $order->productquantity_id = $request->productquantity_id;
 
-        return response()->json(['message' => 'Commande créée avec succès !']);
+        return $order;
     }
 
     public function show(Order $order)
