@@ -23,7 +23,7 @@
     });
 
 // Routes pour les produits
-    route::prefix('/produits')->group(function () {
+    route::prefix('/products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
         Route::get('/{id}', [ProductController::class, 'ShowProduits']);
         Route::post('/', [ProductController::class, 'products']);
