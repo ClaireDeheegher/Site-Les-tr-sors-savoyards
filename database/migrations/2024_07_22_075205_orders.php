@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('productname_id')->constrained('p_cart');
             $table->foreignId('productprice_id')->constrained('p_cart');
             $table->foreignId('productquantity_id')->constrained('p_cart');
+            $table->timestamps();
         });
     }
 
