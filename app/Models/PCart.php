@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,11 +13,19 @@ class PCart extends Model
         'products_Id',
         'quantity',
     ];
-    public function produits() : HasMany{
+
+    public function produits(): HasMany
+    {
         return $this->hasMany(Produits::class);
     }
 
-    public function cart() : HasOne{
+    public function cart(): HasOne
+    {
         return $this->hasOne(Cart::class);
+    }
+
+    public function order(): HasOne
+    {
+        return $this->hasOne(Order::class);
     }
 }
