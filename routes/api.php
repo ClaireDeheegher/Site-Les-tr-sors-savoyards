@@ -11,6 +11,18 @@
         return view('welcome');
     });
 
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+   Route::prefix('carts')->group(function () {
+    Route::get('/', [CartController::class, 'index']);
+    Route::get('/{id}', [CartController::class, 'show']);
+    Route::post('/', [CartController::class, 'store']);
+    Route::put('/{id}', [CartController::class, 'update']);
+    Route::delete('/{id}', [CartController::class, 'destroy']);
+   });
+
 // Routes pour les utilisateurs
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index')->withoutMiddleware('auth:sanctum');
