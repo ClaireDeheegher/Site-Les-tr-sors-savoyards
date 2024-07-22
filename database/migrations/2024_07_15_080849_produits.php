@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('produits', function (Blueprint $table) {
-            $table->id(); // Crée une clé primaire auto-incrémentée
+            $table->id();
             $table->string('nom')->unique();
             $table->double('prix');
             $table->double('quantite');
             $table->double('poid');
             $table->string('description');
-            $table->foreignId('categorie_id')->constrained('categories');
+            $table->foreignId('categories_id')->constrained('categories');
             $table->timestamps();
         });
     }

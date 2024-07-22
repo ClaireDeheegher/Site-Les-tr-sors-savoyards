@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use  Illuminate\Http\Request;
 use App\Models\Cart;
 
 class CartController extends Controller
@@ -31,16 +31,18 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'quantity' => 'required|integer',
+            'ref' => 'required|integer',
         ]);
 
         $cart = new Cart([
-            'quantity' => $request->get('quantity'),
+            'ref' => $request->get('ref'),
         ]);
 
         $cart->save();
 
-        return redirect('/carts')->with('success', 'Cart has been added');
+        //return redirect('/carts')->with('success', 'Cart has been added');
+        //return $cart
+        return response()->json($cart);
     }
 
     /**
@@ -67,14 +69,15 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'quantity' => 'required|integer',
+            'ref' => 'required|integer',
         ]);
 
         $cart = Cart::findOrFail($id);
-        $cart->quantity = $request->get('quantity');
+        $cart->quantity = $request->get('ref');
         $cart->save();
 
-        return redirect('/carts')->with('success', 'Cart has been updated');
+        //return redirect('/carts')->with('success', 'Cart has been updated');
+        return response()->json($cart);
     }
 
     /**
@@ -85,7 +88,8 @@ class CartController extends Controller
         $cart = Cart::findOrFail($id);
         $cart->delete();
 
-        return redirect('/carts')->with('success', 'Cart has been deleted');
+        //return redirect('/carts')->with('success', 'Cart has been deleted');
+        return response()->json(['Message'=>'Panier supprimé avec succès']);
     }
 
 

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\Cast\Double;
 use Ramsey\Uuid\Type\Integer;
-use Illuminate\Support\Facades\File;
 
 class produitsseeder extends Seeder
 {
