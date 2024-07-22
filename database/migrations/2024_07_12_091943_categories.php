@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
         });
-        /*Schema::table('cat', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained('categories');
-        });*/
     }
+
+
+
 
     /**
      * Reverse the migrations.
@@ -26,8 +26,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::drop('categories');
-        Schema::table('cat', function (Blueprint $table) {
-            $table->dropForeign('cat_category_id_foreign');
-        });
+
     }
 };

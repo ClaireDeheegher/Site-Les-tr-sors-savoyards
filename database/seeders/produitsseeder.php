@@ -2,15 +2,20 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use PhpParser\Node\Expr\Cast\Double;
+use Ramsey\Uuid\Type\Integer;
 
 class produitsseeder extends Seeder
 {
     public function run(): void
     {
-        $json = File::get('database/seeders/produits.json');
+        $json = File::get("database/seeders/produits.json");
         $data = json_decode($json);
 
         if ($data === null) {
@@ -18,7 +23,7 @@ class produitsseeder extends Seeder
         }
 
         foreach ($data as $obj) {
-            if (! isset($obj->nom, $obj->description, $obj->prix, $obj->quantite, $obj->poid, $obj->categorie_id)) {
+            if (!isset($obj->nom, $obj->description, $obj->prix, $obj->quantite, $obj->poid, $obj->categorie_id)) {
                 throw new \Exception('Données JSON manquantes pour l\'un des produits.');
             }
 
@@ -30,11 +35,13 @@ class produitsseeder extends Seeder
                 'poid' => $obj->poid,
                 'categories_id' => $obj->categorie_id,
                 'created_at' => now(),
-                'updated_at' => now(),
+                'updated_at' => now()
             ]);
         }
 
     }
 
-    public function timestamps() {}
+    public function timestamps()
+    {
+    }
 }
