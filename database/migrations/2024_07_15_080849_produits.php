@@ -14,13 +14,13 @@ return new class extends Migration
 
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->text('description');
-            $table->decimal('prix', 8, 2);
-            $table->integer('quantite');
-            $table->decimal('poid', 5, 2);
-            $table->foreignId('categories_id')->constrained();
-            $table->timestamps(); // Assurez-vous que cette ligne est présente pour les colonnes created_at et updated_at
+            $table->string('nom')->unique();
+            $table->double('prix');
+            $table->double('quantite');
+            $table->double('poid');
+            $table->string('description');
+            $table->foreignId('categories_id')->constrained('categories');
+            $table->timestamps();
         });
     }
 
