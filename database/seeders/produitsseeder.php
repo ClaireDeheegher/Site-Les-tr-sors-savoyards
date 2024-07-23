@@ -33,9 +33,9 @@ class produitsseeder extends Seeder
                 'prix' => $obj->prix,
                 'quantite' => $obj->quantite,
                 'poid' => $obj->poid,
-                'categories_id' => $obj->categorie_id,
+                'categories_id' => $obj->categories_id,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ]);
         }
 
