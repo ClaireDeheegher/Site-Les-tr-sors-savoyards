@@ -15,12 +15,12 @@ class Categorie extends Model
 
     protected $fillable = ['name'];
 
-    public static function find(string $id) {}
-
-    public static function findOrFail($id) {}
+    public static function find(string $id)
+    {
+    }
 
     public function produits(): HasMany
     {
-        return $this->hasMany(Produits::class, 'categories_id');
+        return $this->hasMany(categorie::class);
     }
 }
