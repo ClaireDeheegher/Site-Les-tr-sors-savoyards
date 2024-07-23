@@ -48,6 +48,9 @@ route::prefix('/products')->group(function () {
 Route::prefix('/categorie')->group(function () {
     Route::get('/', [CategorieController::class, 'index']);
     Route::get('/{id}', [CategorieController::class, 'showCategorie']);
+    Route::post('/', [CategorieController::class, 'create']);
+    Route::put('/{id}', [CategorieController::class, 'update']);
+    Route::delete('/{id}', [CategorieController::class, 'delete']);
 });
 
 // Routes pour les paniers

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use \App\Models\Categorie;
+use App\Models\Categorie;
+use Illuminate\Http\Request;
 
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
@@ -19,9 +20,33 @@ class CategorieController extends Controller //Classe qui va servir de controlle
     public function showCategorie(string $id)
     {
 
-        $categorie = Categorie::all();
+        $categorie = Categorie::find($id);
 
-        dd($categorie[$id]->name);
+        return $categorie;
+    }
+
+    public function create(Request $request)
+    {
+        $categorie = new Categorie();
+        $categorie->name = $request->name;
+        $categorie->save();
+
+        return $categorie;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $categorie = Categorie::findOrFail($id);
+        $categorie->name = $request->name;
+        $categorie->save();
+
+        return $categorie;
+    }
+
+    public function delete($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+        $categorie->delete();
 
         return $categorie;
     }
