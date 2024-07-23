@@ -6,7 +6,7 @@
         "prix": 8.50,
         "quantite": 10,
         "poid": 0.5,
-        "categorie_id": 1
+        "categories_id": 1
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "prix": 7.00,
         "quantite": 15,
         "poid": 0.75,
-        "categorie_id": 1
+        "categories_id": 1
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "prix": 12.00,
         "quantite": 20,
         "poid": 1.0,
-        "categorie_id": 2
+        "categories_id": 2
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "prix": 15.00,
         "quantite": 30,
         "poid": 0.75,
-        "categorie_id": 3
+        "categories_id": 3
     },
     {
         "id": 5,
@@ -42,7 +42,7 @@
         "prix": 4.50,
         "quantite": 50,
         "poid": 0.5,
-        "categorie_id": 4
+        "categories_id": 4
     },
     {
         "id": 6,
@@ -51,6 +51,6 @@
         "prix": 10.00,
         "quantite": 25,
         "poid": 0.25,
-        "categorie_id": 5
+        "categories_id": 5
     }
 ]
