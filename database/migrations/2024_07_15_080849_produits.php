@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('prix', 8, 2);
             $table->integer('quantite');
             $table->decimal('poid', 5, 2);
-            $table->foreignId('categorie_id')->constrained();
+            $table->foreignId('categories_id')->constrained();
             $table->timestamps(); // Assurez-vous que cette ligne est présente pour les colonnes created_at et updated_at
         });
     }
