@@ -15,9 +15,8 @@ class Produits extends Model
         'nom', 'prix', 'quantite', 'poid', 'description', 'categories_id'
     ];
 
-    public static function find(string $id)
-    {
-    }
+    public static function find(string $id) {}
+
 
     public function categorie(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

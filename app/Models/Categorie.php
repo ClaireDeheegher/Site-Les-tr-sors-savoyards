@@ -11,10 +11,11 @@ class Categorie extends Model
     public $timestamps = false;
 
     use HasFactory;
+
     protected $fillable = ['name'];
-    public function produits():HasMany
+
+    public function produits(): HasMany
     {
         return $this->hasMany(categorie::class);
     }
-
 }
