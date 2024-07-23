@@ -20,3 +20,4 @@ class Categories extends Seeder
         DB::table('categories')->insert($categories);
     }
 }
+
