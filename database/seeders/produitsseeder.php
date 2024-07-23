@@ -41,7 +41,7 @@ class produitsseeder extends Seeder
                 'poid' => $obj->poid,
                 'categories_id' => $obj->categories_id,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ]);
         }
 
