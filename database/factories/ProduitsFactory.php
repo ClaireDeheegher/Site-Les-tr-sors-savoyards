@@ -18,7 +18,7 @@
                 'prix' => $this->faker->randomFloat(2, 10, 1000),
                 'quantite' => $this->faker->numberBetween(1, 100),
                 'poid' => $this->faker->randomFloat(2, 0.1, 10),
-                'categorie_id' => $this->faker->numberBetween(1, 10),
+                'categories_id' => $this->faker->numberBetween(1, 10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

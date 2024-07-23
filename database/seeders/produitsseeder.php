@@ -25,7 +25,11 @@ class produitsseeder extends Seeder
         }
 
         foreach ($data as $obj) {
+<<<<<<< HEAD
             if (!isset($obj->nom, $obj->description, $obj->prix, $obj->quantite, $obj->poid, $obj->categories_id)) {
+=======
+            if (! isset($obj->nom, $obj->description, $obj->prix, $obj->quantite, $obj->poid, $obj->categories_id)) {
+>>>>>>> 99d9381 (encore une update)
                 throw new \Exception('Données JSON manquantes pour l\'un des produits.');
             }
 
