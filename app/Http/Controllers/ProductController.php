@@ -6,6 +6,7 @@ use \App\Models\Produits;
 use \Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
+
 class ProductController extends Controller
 {
     public function index(): Collection
@@ -28,7 +29,7 @@ class ProductController extends Controller
             'prix' => 'required',
             'quantite' => 'required|integer',
             'poid' => 'required',
-            'categorie_id' => 'required|integer',
+            'categories_id' => 'required|integer',
         ]);
 
 
