@@ -17,6 +17,6 @@
                 ['id' => 5, 'name' => 'Miel'],
             ];
 
-            DB::table('categories')->insert($categories);
+
         }
     }

@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
         });
-        /*Schema::table('cat', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained('categories');
-        });*/
     }
 
     public function down(): void
