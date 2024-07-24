@@ -2,13 +2,25 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\LoginRequest;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use App\Models\User;
+    use Illuminate\Support\Facades\Hash;
 
     class AuthController extends Controller
     {
-        public function doLogin(Request $request)
+
+        public function doLogin(LoginRequest $request){
+
+            $credentials = $request->validated();
+            dd(Auth::attempt($credentials));
+        }
+
+
+
+
+        public function login(Request $request)
         {
             $request->validate([
                 'email' => 'required|email',
@@ -19,7 +31,6 @@
 
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
-
                 $token = $user->createToken('Personal Access Token')->plainTextToken;
 
                 return response()->json([
@@ -37,7 +48,6 @@
         public function logout(Request $request)
         {
             $request->user()->tokens()->delete();
-
             return response()->json([
                 'message' => 'Déconnexion réussie!'
             ], 200);
