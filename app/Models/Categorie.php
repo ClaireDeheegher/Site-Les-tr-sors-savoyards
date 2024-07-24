@@ -19,6 +19,8 @@ class Categorie extends Model
     {
     }
 
+    public static function findOrFail($id) {}
+
     public function produits(): HasMany
     {
         return $this->hasMany(Produits::class);
