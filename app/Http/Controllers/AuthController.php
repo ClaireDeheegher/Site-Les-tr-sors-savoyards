@@ -4,6 +4,8 @@
 
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Str;
     use App\Models\User;
 
     class AuthController extends Controller
@@ -19,14 +21,15 @@
 
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
-
                 $token = $user->createToken('Personal Access Token')->plainTextToken;
+
+                $cookie = cookie('auth_token', $token, 60 * 24, null, null, true, true, false, 'Strict');
 
                 return response()->json([
                     'message' => 'Connexion réussie!',
                     'token' => $token,
                     'user' => $user
-                ], 200);
+                ], 200)->cookie($cookie);
             }
 
             return response()->json([
@@ -38,8 +41,10 @@
         {
             $request->user()->tokens()->delete();
 
+            $cookie = \Cookie::forget('auth_token');
+
             return response()->json([
                 'message' => 'Déconnexion réussie!'
-            ], 200);
+            ], 200)->withCookie($cookie);
         }
     }
