@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Categorie extends Model
 {
@@ -15,6 +16,8 @@ class Categorie extends Model
     protected $fillable = ['name'];
 
     public static function find(string $id) {}
+
+    public static function findOrFail($id) {}
 
     public function produits(): HasMany
     {
