@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\OrderController;
@@ -11,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 Route::prefix('carts')->group(function () {
     Route::get('/', [CartController::class, 'index']);
@@ -63,10 +60,12 @@ Route::prefix('/orders')->group(function () {
     Route::post('/', [OrderController::class, 'create']);
     Route::put('/{id}', [OrderController::class, 'update']);
     Route::delete('/{id}', [OrderController::class, 'destroy']);
-
 });
+
+    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'doLogin']);
 
 // Exemple de route pour obtenir l'utilisateur authentifié
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->withoutMiddleware('auth:sanctum');
+})->Middleware('auth:sanctum');
