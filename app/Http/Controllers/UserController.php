@@ -1,59 +1,58 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use App\Models\User;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Hash;
-    use function Laravel\Prompts\password;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-    class UserController extends Controller
+class UserController extends Controller
+{
+    public function index()
     {
-        public function index()
-        {
-            $users = User::all();
+        $users = User::all();
 
-            return response()->json($users);
-            //return view('users.index', compact('users'));
-        }
+        return response()->json($users);
+        //return view('users.index', compact('users'));
+    }
 
         public function create()
         {
             return view('users.create');
         }
 
-        public function store(Request $request)
-        {
-            // Validation
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'lastname' => 'required|string|max:255',
-                'birthday' => 'required|date',
-                'gender' => 'required|string|max:1',
-                'phone' => 'required|string|max:20',
-                'address' => 'required|string|max:255',
-                'address2' => 'nullable|string|max:255',
-                'zipcode' => 'required|string|max:10',
-                'town' => 'required|string|max:255',
-                'country' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email',
-                'password' => 'required|string|min:8|confirmed',
-            ]);
+    public function store(Request $request)
+    {
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'birthday' => 'required|date',
+            'gender' => 'required|string|max:1',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'address2' => 'nullable|string|max:255',
+            'zipcode' => 'required|string|max:10',
+            'town' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-            $user = new User([
-                'name' => $request->input('name'),
-                'lastname' => $request->input('lastname'),
-                'birthday' => $request->input('birthday'),
-                'gender' => $request->input('gender'),
-                'phone' => $request->input('phone'),
-                'address' => $request->input('address'),
-                'address2' => $request->input('address2'),
-                'zipcode' => $request->input('zipcode'),
-                'town' => $request->input('town'),
-                'country' => $request->input('country'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-            ]);
+        $user = new User([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'birthday' => $request->input('birthday'),
+            'gender' => $request->input('gender'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'address2' => $request->input('address2'),
+            'zipcode' => $request->input('zipcode'),
+            'town' => $request->input('town'),
+            'country' => $request->input('country'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
 
             $user->save();
 
