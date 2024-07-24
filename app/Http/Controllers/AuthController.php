@@ -8,17 +8,14 @@
     use App\Models\User;
     use Illuminate\Support\Facades\Hash;
 
-    class AuthController extends Controller
-    {
+class AuthController extends Controller
+{
 
         public function doLogin(LoginRequest $request){
 
             $credentials = $request->validated();
             dd(Auth::attempt($credentials));
         }
-
-
-
 
         public function login(Request $request)
         {
