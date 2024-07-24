@@ -15,15 +15,16 @@ class CategorieController extends Controller //Classe qui va servir de controlle
         /* $categorie->name = 'Epicerie'; # Création d'une nouvelle ligne dans la db avec le nom de la catégorie
          $categorie->save();*/
 
-        return \App\Models\Categorie::all();
+        return view('categories.categories', ['categorie' => \App\Models\Categorie::all()]);
     }
 
-    public function showCategorie(string $id)
+    public function showProductList(string $id)
     {
 
-        $categorie = Categorie::find($id);
+        $categorie = Categorie::findOrFail($id);
+        $categorie->produits()->where('categories_id', $id)->get();
 
-        return $categorie;
+        return view('categories.product_listing', [$categorie]);
     }
 
     public function create(Request $request)
