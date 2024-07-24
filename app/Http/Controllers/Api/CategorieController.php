@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
@@ -19,7 +20,6 @@ class CategorieController extends Controller //Classe qui va servir de controlle
 
     public function showProductList(Categorie $id)
     {
-        /*$category=Categorie::where('id', $id)->get(); */
 
         //$id > produits()->where('categories_id', $id)->get();
 
