@@ -63,5 +63,10 @@ Route::prefix('/orders')->group(function () {
     Route::delete('/{id}', [OrderController::class, 'destroy']);
 });
 
-    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'doLogin']);
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'doLogin']);
+
+// Exemple de route pour obtenir l'utilisateur authentifié
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->Middleware('auth:sanctum');
