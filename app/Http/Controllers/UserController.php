@@ -5,6 +5,7 @@
     use App\Models\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Hash;
+    use function Laravel\Prompts\password;
 
     class UserController extends Controller
     {
@@ -12,12 +13,13 @@
         {
             $users = User::all();
 
-            //return response()->json($users);
-            return view('users.index', compact('users'));
+            return response()->json($users);
+            //return view('users.index', compact('users'));
         }
 
         public function create()
         {
+            _token: "{{ csrf_token() }}";
             return view('users.create');
         }
 
@@ -63,8 +65,8 @@
         {
             $user = User::findOrFail($id);
 
-            //return response()->json($user);
-            return view('users.show', compact('user'));
+            return response()->json($user);
+            //return view('users.show', compact('user'));
         }
 
         public function edit($id)
