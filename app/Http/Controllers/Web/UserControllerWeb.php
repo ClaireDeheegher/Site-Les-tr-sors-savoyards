@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+    namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+    use App\Models\User;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Hash;
+    use function Laravel\Prompts\password;
 
-class UserControllerWeb extends Controller
-{
-    public function index()
+    class UserController extends Controller
     {
-        $users = User::all();
+        public function index()
+        {
+            $users = User::all();
 
-        //return response()->json($users);
-        return view('users.index', compact('users'));
-    }
+            return response()->json($users);
+            //return view('users.index', compact('users'));
+        }
 
-    public function create()
-    {
-        return view('users.create');
-    }
+        public function create()
+        {
+            return view('users.create');
+        }
 
     public function store(Request $request)
     {
