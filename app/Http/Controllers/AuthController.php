@@ -2,15 +2,25 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\LoginRequest;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\Hash;
-    use Illuminate\Support\Str;
     use App\Models\User;
+    use Illuminate\Support\Facades\Hash;
 
     class AuthController extends Controller
     {
-        public function doLogin(Request $request)
+
+        public function doLogin(LoginRequest $request){
+
+            $credentials = $request->validated();
+            dd(Auth::attempt($credentials));
+        }
+
+
+
+
+        public function login(Request $request)
         {
             $request->validate([
                 'email' => 'required|email',
@@ -23,13 +33,11 @@
                 $user = Auth::user();
                 $token = $user->createToken('Personal Access Token')->plainTextToken;
 
-                $cookie = cookie('auth_token', $token, 60 * 24, null, null, true, true, false, 'Strict');
-
                 return response()->json([
                     'message' => 'Connexion réussie!',
                     'token' => $token,
                     'user' => $user
-                ], 200)->cookie($cookie);
+                ], 200);
             }
 
             return response()->json([
@@ -40,11 +48,8 @@
         public function logout(Request $request)
         {
             $request->user()->tokens()->delete();
-
-            $cookie = \Cookie::forget('auth_token');
-
             return response()->json([
                 'message' => 'Déconnexion réussie!'
-            ], 200)->withCookie($cookie);
+            ], 200);
         }
     }
