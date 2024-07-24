@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\View;
 
+
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function Laravel\Prompts\password;
 
 class UserController extends Controller
 {
@@ -12,7 +16,6 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        //return response()->json($users);
         return view('users.index', compact('users'));
     }
 
@@ -74,7 +77,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request, $id): JsonResponse
     {
         // Validation
         $request->validate([
@@ -88,7 +91,7 @@ class UserController extends Controller
             'zipcode' => 'required|string|max:10',
             'town' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -112,7 +115,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return response()->json(['message' => 'Utilisateur mis à jour avec succès.']);
+        return str("Utilisateur mis à jour avec succès.");
     }
 
     public function destroy($id)
@@ -120,6 +123,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response()->json(['message' => 'Utilisateur supprimé avec succès.']);
+        return str('Utilisateur supprimé avec succès.');
     }
 }
