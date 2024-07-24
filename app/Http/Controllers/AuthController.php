@@ -8,11 +8,27 @@
 
     class AuthController extends Controller
     {
+
+        public function register()
+        {
+            $users = User::all();
+            //return view('users.register');
+            return view('auth.register');
+        }
         public function doLogin(Request $request)
         {
             $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|string|min:8',
+                'name' => 'required|string',
+                'lastname' => 'required|string',
+                'birthday' => 'required|date',
+                'gender' => 'required|string',
+                'address' => 'required|string',
+                'address2' => 'required|string',
+                'zipcode' => 'required|string',
+                'town' => 'required|string',
+                'country' => 'required|string',
+                'email' => 'required|string|email',
+                'password' => 'required|string',
             ]);
 
             $credentials = $request->only('email', 'password');
