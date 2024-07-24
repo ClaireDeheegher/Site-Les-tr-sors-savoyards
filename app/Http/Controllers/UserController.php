@@ -1,21 +1,20 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use App\Models\User;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Hash;
-    use function Laravel\Prompts\password;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-    class UserController extends Controller
+class UserController extends Controller
+{
+    public function index()
     {
-        public function index()
-        {
-            $users = User::all();
+        $users = User::all();
 
-            return response()->json($users);
-            //return view('users.index', compact('users'));
-        }
+        return response()->json($users);
+        //return view('users.index', compact('users'));
+    }
 
     public function create()
     {
