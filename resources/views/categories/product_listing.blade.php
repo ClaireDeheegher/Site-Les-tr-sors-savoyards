@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Produits</h1>
-    @foreach($categorie->produits as $product)
+    @foreach($categories->produits as $product)
         <p>Nom : {{$categorie->nom}}</p>
         <p>Prix : {{$categorie->prix}}</p>
         <p>Quantité : {{$categorie->quantite}}</p>

@@ -3,10 +3,10 @@
     namespace App\Http\Controllers\View;
 
     use App\Http\Controllers\Controller;
-    use App\Models\Categorie;
+    use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
+class CategoryController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
     public function index()
     {
@@ -21,8 +21,8 @@ class CategorieController extends Controller //Classe qui va servir de controlle
     public function showProductList(string $id)
     {
 
-        $categorie = Categorie::findOrFail($id);
-        $categorie->produits()->where('categories_id', $id)->get();
+        $category = Categorie::findOrFail($id);
+        $category->produits()->where('categories_id', $id)->get();
 
         return view('categories.product_listing', [$categorie]);
     }
