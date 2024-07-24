@@ -12,7 +12,9 @@
     {
 
         public function doLogin(LoginRequest $request){
-            return str('validé');
+
+            $credentials = $request->validated();
+            dd(Auth::attempt($credentials));
         }
 
 

@@ -19,7 +19,6 @@
 
         public function create()
         {
-            _token: "{{ csrf_token() }}";
             return view('users.create');
         }
 
