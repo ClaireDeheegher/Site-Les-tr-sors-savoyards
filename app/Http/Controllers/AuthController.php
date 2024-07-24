@@ -1,52 +1,45 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use App\Http\Requests\LoginRequest;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Auth;
-    use App\Models\User;
-    use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function doLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ]);
 
-        public function doLogin(LoginRequest $request){
+        $credentials = $request->only('email', 'password');
 
-            $credentials = $request->validated();
-            dd(Auth::attempt($credentials));
-        }
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-        public function login(Request $request)
-        {
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|string|min:8',
-            ]);
-
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::attempt($credentials)) {
-                $user = Auth::user();
-                $token = $user->createToken('Personal Access Token')->plainTextToken;
-
-                return response()->json([
-                    'message' => 'Connexion réussie!',
-                    'token' => $token,
-                    'user' => $user
-                ], 200);
-            }
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
 
             return response()->json([
-                'message' => 'Les informations de connexion ne sont pas correctes.'
-            ], 401);
-        }
-
-        public function logout(Request $request)
-        {
-            $request->user()->tokens()->delete();
-            return response()->json([
-                'message' => 'Déconnexion réussie!'
+                'message' => 'Connexion réussie!',
+                'token' => $token,
+                'user' => $user
             ], 200);
         }
+
+        return response()->json([
+            'message' => 'Les informations de connexion ne sont pas correctes.'
+        ], 401);
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Déconnexion réussie!'
+        ], 200);
+    }
+}
