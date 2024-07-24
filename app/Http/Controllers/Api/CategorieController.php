@@ -3,10 +3,8 @@
     namespace App\Http\Controllers\Api;
 
 
-
 use App\Models\Categorie;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
@@ -20,13 +18,13 @@ class CategorieController extends Controller //Classe qui va servir de controlle
         return view('categories.categories', ['categorie' => \App\Models\Categorie::all()]);
     }
 
-    public function showProductList(string $id)
+    public function showProductList(Categorie $id)
     {
+        /*$category=Categorie::where('id', $id)->get(); */
 
-        $categories = Categorie::findOrFail($id);
-        $categories->produits()->where('categories_id', $id)->get();
+        //$id > produits()->where('categories_id', $id)->get();
 
-        return view('categories.product_listing', [$categories]);
+        return view('categories.product_listing', ['category' => $id]);
     }
 
     public function create(Request $request)
@@ -38,20 +36,20 @@ class CategorieController extends Controller //Classe qui va servir de controlle
         return $categorie;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Categorie $id)
     {
-        $categorie = Categorie::findOrFail($id);
-        $categorie->name = $request->name;
-        $categorie->save();
 
-        return $categorie;
+        $id->name = $request->name;
+        $id->save();
+
+        return $id;
     }
 
-    public function delete($id)
+    public function delete(Categorie $id)
     {
-        $categorie = Categorie::findOrFail($id);
-        $categorie->delete();
 
-        return $categorie;
+        $id->delete();
+
+        return $id;
     }
 }
