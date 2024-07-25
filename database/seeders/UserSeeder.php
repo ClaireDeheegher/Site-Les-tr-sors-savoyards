@@ -14,9 +14,9 @@
         public function run()
         {
             // Créer 10 utilisateurs en utilisant la factory
-            //User::factory()->count(10)->create();
+            User::factory()->count(10)->create();
 
-            User::create([
+            /*User::create([
                 'name' => 'Test User',
                 'lastname' => 'Doe',
                 'birthday' => '1990-01-01',
@@ -29,6 +29,6 @@
                 'country' => 'Countryland',
                 'email' => 'testuser@example.com',
                 'password' => Hash::make('password123'),
-            ]);
+            ]);*/
         }
     }

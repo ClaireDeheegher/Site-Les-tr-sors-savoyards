@@ -11,7 +11,7 @@
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('welcome');
 
     Route::prefix('carts')->group(function () {
         Route::get('/', [CartController::class, 'index']);
@@ -23,14 +23,15 @@
 
 // Routes pour les utilisateurs
     Route::prefix('users')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('users.index')->Middleware('auth:sanctum');
-        Route::get('/create', [UserController::class, 'create'])->name('users.create')->Middleware('auth:sanctum');
-        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->Middleware('auth:sanctum');
-        Route::put('/{user}', [UserController::class, 'update'])->name('users.update')->Middleware('auth:sanctum');
-        Route::post('/', [UserController::class, 'store'])->name('users.store')->Middleware('auth:sanctum');
-        Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->Middleware('auth:sanctum');
-        Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->Middleware('auth:sanctum');
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
+    //->Middleware('auth:sanctum')
 
 // Routes pour les produits
     route::prefix('/products')->group(function () {
@@ -65,3 +66,13 @@
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'doLogin']);
     Route::get('/register', [AuthController::class, 'register']);
+
+
+
+
+// Route pour afficher le formulaire de création d'utilisateur
+    Route::get('/users/create', function () {
+        return view('users.create');
+    })->name('users.create');
+// Route pour traiter la soumission du formulaire
+    Route::post('/users', [AuthController::class, 'store'])->name('users.store');

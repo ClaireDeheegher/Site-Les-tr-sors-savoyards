@@ -17,12 +17,12 @@
                 $table->string('lastname');
                 $table->date('birthday');
                 $table->char('gender', 1);
-                $table->string('phone');
                 $table->string('address');
                 $table->string('address2');
                 $table->string('zipcode');
                 $table->string('town');
                 $table->string('country');
+                $table->string('phone');
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
