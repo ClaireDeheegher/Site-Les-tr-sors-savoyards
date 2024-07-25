@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -8,10 +9,7 @@ class CategoryController extends Controller //Classe qui va servir de controller
 {
     public function index()
     {
-        $category = new Category(); // Appel du modèle et de la db
-
-
-        return view('categories.index', ['category' => \App\Models\Category::all()]);
+        return view('categories.index', ['category' => Category::all()]);
     }
 
     public function showProductList(Category $id)
@@ -39,20 +37,28 @@ class CategoryController extends Controller //Classe qui va servir de controller
         return redirect('/category');
     }
 
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('categories.update', compact('category'));
+    }
+
     public function update(Request $request, Category $id)
     {
 
         $id->name = $request->name;
         $id->save();
 
-        return $id;
+        return redirect('/category');
+
     }
 
-    public function delete(Category $id)
+    public function delete( $id)
     {
+        $category = Category::findOrFail($id);
+        $category->delete();
 
-        $id->delete();
 
-        return $id;
+        return redirect('/category');
     }
 }
