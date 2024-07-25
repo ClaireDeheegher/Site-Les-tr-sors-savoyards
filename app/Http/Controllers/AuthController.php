@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -25,12 +24,12 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Connexion réussie!',
                 'token' => $token,
-                'user' => $user
+                'user' => $user,
             ], 200);
         }
 
         return response()->json([
-            'message' => 'Les informations de connexion ne sont pas correctes.'
+            'message' => 'Les informations de connexion ne sont pas correctes.',
         ], 401);
     }
 
@@ -39,7 +38,7 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json([
-            'message' => 'Déconnexion réussie!'
+            'message' => 'Déconnexion réussie!',
         ], 200);
     }
 }
