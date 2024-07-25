@@ -12,8 +12,8 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return response()->json($users);
-        //return view('users.index', compact('users'));
+        //return response()->json($users);
+        return view('users.index', compact('users'));
     }
 
     public function create()

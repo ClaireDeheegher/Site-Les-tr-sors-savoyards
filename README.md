@@ -1,3 +1,28 @@
+<h1 align="center"> Les trésors savoyards </h1>
+
+<h2 align="center"> Présentation du projet</h2>
+
+<p> Ce projet a été réalisé dans le cadre d'un module sur Laravel. </br>
+Lors de la réalisation du MVP, les fonctionalités suivantes ont été décidées : </br>
+- Création de tables produits, catégories, panier, avec des relations </br>
+- CRUD sur les tables, </br>
+- Visualisation des catégories, produits, panier </br>
+- Choix du mode de livraison</br>
+</p>
+<p>
+Pour des raisons de conformité au cahier des charges, les fonctionalités suivantes ont été réalisées sur le projet :</br>
+- Création de tables produits, catégories, panier, p-cart (table de liaison), order, user et relations entre les tables selon les besoins </br>
+- CRUD sur les tables </br>
+- Utilisation du design pattern MVC,</br>
+- Création d'une authentification avec Sanctum </br>
+- Réalisation de formulaires (sign up et login) avec Blade </br>
+- Visualisation des catégories de produits et affichage des produits par catégories avec Blade </br>
+- Création d'un dashboard
+</p>
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
