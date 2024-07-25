@@ -18,7 +18,7 @@ class Produits extends Model
 
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function pCart(): HasMany
