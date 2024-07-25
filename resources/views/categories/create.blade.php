@@ -2,7 +2,7 @@
 
 @section('content')
     <title>Création de catégorie</title>
-    <h1>troll</h1>
+    <h1>Création de catégorie</h1>
     <form action="{{ route('category.store') }}" method="post">
         <input type="name" name="name" placeholder="nom de la catégorie">
         {{ csrf_field() }}
