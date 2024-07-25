@@ -1,12 +1,9 @@
-
 @extends('layouts.app')
 
 @section ('content')
     <h1>Catégories</h1>
     <section>
-        <a href="{{route('category.create')}}" class="btn btn-info btn-sm">Ajouter une catégorie</a>
-
-
+        <a href="{{route('category.store')}}" class="btn btn-info btn-sm">Ajouter une catégorie</a>
     </section>
     <section>
     @foreach($category as $categories)
