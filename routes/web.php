@@ -73,4 +73,3 @@ Route::prefix('carts')->group(function () {
         Route::get('/', [CategorieController::class, 'index']);
         Route::get('/{id}', [CategorieController::class, 'showProductList'])->name('categorie.show');
 });
-
