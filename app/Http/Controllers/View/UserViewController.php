@@ -10,7 +10,7 @@
     use Illuminate\Support\Facades\Hash;
     use function Laravel\Prompts\password;
 
-    class UserController extends Controller
+    class UserViewController extends Controller
     {
         public function index()
         {

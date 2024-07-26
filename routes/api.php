@@ -1,16 +1,14 @@
 <?php
 
+    use App\Http\Controllers\Api\AuthController;
     use App\Http\Controllers\Api\CartController;
-    use App\Http\Controllers\Api\CategorieController;
+    use App\Http\Controllers\Api\CategoryController;
     use App\Http\Controllers\Api\OrderController;
     use App\Http\Controllers\Api\ProductController;
     use App\Http\Controllers\Api\UserController;
-    use App\Http\Controllers\AuthController;
     use Illuminate\Support\Facades\Route;
 
-
-
-Route::prefix('carts')->group(function () {
+    Route::prefix('carts')->group(function () {
     Route::get('/', [CartController::class, 'index']);
     Route::get('/{id}', [CartController::class, 'show']);
     Route::post('/', [CartController::class, 'store']);
@@ -18,20 +16,20 @@ Route::prefix('carts')->group(function () {
     Route::delete('/{id}', [CartController::class, 'destroy']);
 });
 
-// Routes pour les utilisateurs
+// Routes pour les users
 Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index')->Middleware('auth:sanctum');
-    Route::get('/create', [UserController::class, 'create'])->name('users.create')->Middleware('auth:sanctum');
-    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->Middleware('auth:sanctum');
-    Route::put('/{user}', [UserController::class, 'update'])->name('users.update')->Middleware('auth:sanctum');
-    Route::post('/', [UserController::class, 'store'])->name('users.store')->Middleware('auth:sanctum');
-    Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->Middleware('auth:sanctum');
-    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->Middleware('auth:sanctum');
+    Route::get('/', [UserController::class, 'index'])->name('users.index')->WithoutMiddleware('auth:sanctum');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create')->WithoutMiddleware('auth:sanctum');
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->WithoutMiddleware('auth:sanctum');
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update')->WithoutMiddleware('auth:sanctum');
+    Route::post('/', [UserController::class, 'store'])->name('users.store')->WithoutMiddleware('auth:sanctum');
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->WithoutMiddleware('auth:sanctum');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->WithoutMiddleware('auth:sanctum');
 });
 //->Middleware('auth:sanctum')
 
 // Routes pour les produits
-route::prefix('/products')->group(function () {
+Route::prefix('/products')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{id}', [ProductController::class, 'ShowProduits']);
     Route::post('/', [ProductController::class, 'products']);
@@ -41,11 +39,11 @@ route::prefix('/products')->group(function () {
 
 // Routes pour les catégories
 Route::prefix('/categorie')->group(function () {
-    Route::get('/', [CategorieController::class, 'index']);
-    Route::get('/{id}', [CategorieController::class, 'showCategorie']);
-    Route::post('/', [CategorieController::class, 'create']);
-    Route::put('/{id}', [CategorieController::class, 'update']);
-    Route::delete('/{id}', [CategorieController::class, 'delete']);
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'showCategorie']);
+    Route::post('/', [CategoryController::class, 'create']);
+    Route::put('/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'delete']);
 });
 
 // Routes pour les paniers
@@ -60,5 +58,8 @@ Route::prefix('/orders')->group(function () {
     Route::delete('/{id}', [OrderController::class, 'destroy']);
 });
 
-    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'doLogin']);
+
+        Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+        Route::post('/login', [AuthController::class, 'doLogin']);
+
+
