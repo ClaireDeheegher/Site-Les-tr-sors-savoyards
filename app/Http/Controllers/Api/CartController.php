@@ -46,18 +46,12 @@ class CartController extends Controller
         return response()->json($cart);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $cart = Cart::findOrFail($id);
         return response()->json($cart);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $cart = Cart::findOrFail($id);

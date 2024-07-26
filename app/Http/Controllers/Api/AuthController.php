@@ -10,9 +10,10 @@
     {
         public function doLogin(Request $request)
         {
+
             $request->validate([
                 'email' => 'required|email',
-                'password' => 'required|string|min:8',
+                'password' => 'required',
             ]);
 
             $credentials = $request->only('email', 'password');

@@ -60,3 +60,4 @@ Route::prefix('/orders')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'doLogin']);
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
