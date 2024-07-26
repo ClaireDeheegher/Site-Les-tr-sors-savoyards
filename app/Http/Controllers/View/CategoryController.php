@@ -1,55 +1,64 @@
 <?php
 
-    namespace App\Http\Controllers\View;
-
-    use App\Http\Controllers\Controller;
-    use App\Models\Category;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller //Classe qui va servir de controller pour afficher les pages
 {
     public function index()
     {
-        $categorie = new Categorie(); // Appel du modèle et de la db
-
-        /* $categorie->name = 'Epicerie'; # Création d'une nouvelle ligne dans la db avec le nom de la catégorie
-         $categorie->save();*/
-
-        return view('categories.categories', ['categorie' => \App\Models\Categorie::all()]);
+        return view('categories.index', ['category' => Category::all()]);
     }
 
-    public function showProductList(string $id)
+    public function showProductList(Category $id)
     {
+        /*$category=Categorie::where('id', $id)->get(); */
 
-        $category = Categorie::findOrFail($id);
-        $category->produits()->where('categories_id', $id)->get();
+        //$id > produits()->where('categories_id', $id)->get();
 
-        return view('categories.product_listing', [$categorie]);
+        return view('categories.product_listing', ['category' => $id]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $categorie = new Categorie();
-        $categorie->name = $request->name;
-        $categorie->save();
 
-        return $categorie;
+        return view('categories.create');
     }
 
-    public function update(Request $request, $id)
+    public function store(Request $request)
     {
-        $categorie = Categorie::findOrFail($id);
-        $categorie->name = $request->name;
-        $categorie->save();
 
-        return $categorie;
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect('/category');
     }
 
-    public function delete($id)
+    public function edit($id)
     {
-        $categorie = Categorie::findOrFail($id);
-        $categorie->delete();
+        $category = Category::findOrFail($id);
+        return view('categories.update', compact('category'));
+    }
 
-        return $categorie;
+    public function update(Request $request, Category $id)
+    {
+
+        $id->name = $request->name;
+        $id->save();
+
+        return redirect('/category');
+
+    }
+
+    public function delete( $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+
+        return redirect('/category');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -9,39 +10,28 @@ class CategoryController extends Controller //Classe qui va servir de controller
 {
     public function index()
     {
-        return view('categories.index', ['category' => Category::all()]);
+        $category = Category::all();
+
+        return response()->json($category);
     }
 
     public function showProductList(Category $id)
     {
-        /*$category=Categorie::where('id', $id)->get(); */
+        $category = Category::where('id', $id)->get();
 
-        //$id > produits()->where('categories_id', $id)->get();
+        $category->products()->where('categories_id', $id)->get();
 
-        return view('categories.product_listing', ['category' => $id]);
+        return $category;
     }
 
     public function create()
     {
-
-        return view('categories.create');
-    }
-
-    public function store(Request $request)
-    {
-
         $category = new Category();
         $category->name = $request->name;
         $category->save();
-
-        return redirect('/category');
+        return response()->json($category);
     }
 
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('categories.update', compact('category'));
-    }
 
     public function update(Request $request, Category $id)
     {
@@ -49,16 +39,15 @@ class CategoryController extends Controller //Classe qui va servir de controller
         $id->name = $request->name;
         $id->save();
 
-        return redirect('/category');
+        return $id;
 
     }
 
-    public function delete( $id)
+    public function delete($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
 
-
-        return redirect('/category');
+        return $category;
     }
 }
