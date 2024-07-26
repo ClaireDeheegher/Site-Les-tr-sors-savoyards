@@ -1,14 +1,15 @@
 <?php
 
-    use App\Http\Controllers\Api\AuthController;
-    use App\Http\Controllers\Api\CartController;
-    use App\Http\Controllers\View\CategoryController;
-    use App\Http\Controllers\Api\OrderController;
-    use App\Http\Controllers\View\ProductController;
-    use App\Http\Controllers\View\UserController;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\CategorieController;
+// Routes pour le login
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\View\CategoryController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\View\ProductController;
+use App\Http\Controllers\View\UserController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CategoryController;
 
     Route::get('/', function () {
         return view('welcome');
@@ -47,12 +48,12 @@ Route::prefix('carts')->group(function () {
     });
 
 // Routes pour les catégories
-    Route::prefix('/category')->group(function () {
-        Route::get('/', [CategoryController::class, 'index']);
-        Route::get('/{id}', [CategoryController\Controller::class, 'showCategorie']);
-        Route::post('/', [CategoryController::class, 'create']);
-        Route::put('/{id}', [CategoryController::class, 'update']);
-        Route::delete('/{id}', [CategoryController::class, 'delete']);
+    Route::prefix('/categorie')->group(function () {
+        Route::get('/', [CategorieController::class, 'index']);
+        Route::get('/{id}', [CategorieController::class, 'showCategorie']);
+        Route::post('/', [CategorieController::class, 'create']);
+        Route::put('/{id}', [CategorieController::class, 'update']);
+        Route::delete('/{id}', [CategorieController::class, 'delete']);
     });
 
 // Routes pour les paniers
@@ -67,3 +68,21 @@ Route::prefix('carts')->group(function () {
         Route::delete('/{id}', [OrderController::class, 'destroy']);
     });
 
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'doLogin']);
+
+route::prefix('/products')->group(function () {
+    Route::post('/', [ProductController::class, 'products'])->name('product.create');
+    Route::put('/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+});
+Route::prefix('/category')->group(function () {
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/{id}/update', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/', [CategoryController::class, 'delete'])->name('category.delete');
+    Route::get('/{id}', [CategoryController::class, 'showProductList'])->name('category.show');
+
+});
