@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
-
+use App\Http\Controllers\Controller;
 use App\Models\Order as Order;
 use Illuminate\Http\Request;
 

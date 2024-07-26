@@ -44,11 +44,11 @@ route::prefix('/products')->group(function () {
 
 // Routes pour les catégories
 Route::prefix('/categorie')->group(function () {
-    Route::get('/', [CategorieController::class, 'index']);
-    Route::get('/{id}', [CategorieController::class, 'showProductList']);
-    Route::post('/', [CategorieController::class, 'create']);
-    Route::put('/{id}', [CategorieController::class, 'update']);
-    Route::delete('/{id}', [CategorieController::class, 'delete']);
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'showProductList']);
+    Route::post('/', [CategoryController::class, 'create']);
+    Route::put('/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'delete']);
 });
 
 // Routes pour les paniers
@@ -63,8 +63,8 @@ Route::prefix('/orders')->group(function () {
     Route::delete('/{id}', [OrderController::class, 'destroy']);
 });
 
-    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'doLogin']);
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'doLogin']);
 
 // Exemple de route pour obtenir l'utilisateur authentifié
 Route::get('/user', function (Request $request) {
