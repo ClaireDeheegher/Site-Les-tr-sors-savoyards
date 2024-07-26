@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\CategorieController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
@@ -44,11 +44,11 @@ route::prefix('/products')->group(function () {
 
 // Routes pour les catégories
 Route::prefix('/categorie')->group(function () {
-    Route::get('/', [CategorieController::class, 'index']);
-    Route::get('/{id}', [CategorieController::class, 'showProductList']);
-    Route::post('/', [CategorieController::class, 'create']);
-    Route::put('/{id}', [CategorieController::class, 'update']);
-    Route::delete('/{id}', [CategorieController::class, 'delete']);
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'showProductList']);
+    Route::post('/', [CategoryController::class, 'create']);
+    Route::put('/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'delete']);
 });
 
 // Routes pour les paniers

@@ -1,12 +1,12 @@
 <?php
 
-    namespace App\Http\Controllers\View;
+namespace App\Http\Controllers\View;
 
-    use App\Http\Controllers\Controller;
-    use App\Models\Categorie;
+use App\Http\Controllers\Controller;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class CategorieController extends Controller //Classe qui va servir de controller pour afficher les pages
+class CategorieControllerWeb extends Controller //Classe qui va servir de controller pour afficher les pages
 {
     public function index()
     {
@@ -15,16 +15,15 @@ class CategorieController extends Controller //Classe qui va servir de controlle
         /* $categorie->name = 'Epicerie'; # Création d'une nouvelle ligne dans la db avec le nom de la catégorie
          $categorie->save();*/
 
-        return view('categories.categories', ['categorie' => \App\Models\Categorie::all()]);
+        return \App\Models\Categorie::all();
     }
 
-    public function showProductList(string $id)
+    public function showCategorie(string $id)
     {
 
-        $categorie = Categorie::findOrFail($id);
-        $categorie->produits()->where('categories_id', $id)->get();
+        $categorie = Categorie::find($id);
 
-        return view('categories.product_listing', [$categorie]);
+        return $categorie;
     }
 
     public function create(Request $request)
