@@ -1,11 +1,10 @@
 <?php
 
-    use App\Http\Controllers\Api\AuthController;
-    use App\Http\Controllers\Api\CartController;
-    use App\Http\Controllers\Api\OrderController;
-    use App\Http\Controllers\View\CategorieController;
-    use App\Http\Controllers\View\ProductController;
-    use App\Http\Controllers\View\UserController;
+
+
+    use App\Http\Controllers\Api\CategoryController;
+    use App\Http\Controllers\Api\ProductController;
+    use App\Http\Controllers\Api\UserController;
     use Illuminate\Support\Facades\Route;
 
 
@@ -19,14 +18,6 @@ Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
         return view('auth.login');
     });
 
-// Routes pour les carts
-Route::prefix('carts')->group(function () {
-    Route::get('/', [CartController::class, 'index']);
-    Route::get('/{id}', [CartController::class, 'show']);
-    Route::post('/', [CartController::class, 'store']);
-    Route::put('/{id}', [CartController::class, 'update']);
-    Route::delete('/{id}', [CartController::class, 'destroy']);
-});
 
 // Routes pour les users
     Route::prefix('users')->group(function () {
@@ -53,23 +44,11 @@ Route::prefix('carts')->group(function () {
 
 // Routes pour les catégories
     Route::prefix('/categorie')->group(function () {
-        Route::get('/', [CategorieController::class, 'index']);
-        Route::get('/{id}', [CategorieController::class, 'showCategorie']);
-        Route::post('/', [CategorieController::class, 'create']);
-        Route::put('/{id}', [CategorieController::class, 'update']);
-        Route::delete('/{id}', [CategorieController::class, 'delete']);
-    });
-
-// Routes pour les paniers
-    Route::resource('carts', CartController::class);
-
-// Routes pour les commandes
-    Route::prefix('/orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index']);
-        Route::get('/{id}', [OrderController::class, 'show']);
-        Route::post('/', [OrderController::class, 'create']);
-        Route::put('/{id}', [OrderController::class, 'update']);
-        Route::delete('/{id}', [OrderController::class, 'destroy']);
+        Route::get('/', [CategoryController::class, 'index']);
+        Route::get('/{id}', [CategoryController::class, 'showCategorie']);
+        Route::post('/', [CategoryController::class, 'create']);
+        Route::put('/{id}', [CategoryController::class, 'update']);
+        Route::delete('/{id}', [CategoryController::class, 'delete']);
     });
 
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
