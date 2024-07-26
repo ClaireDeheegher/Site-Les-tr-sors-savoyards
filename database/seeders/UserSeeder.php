@@ -28,7 +28,7 @@
                 'town' => 'Townsville',
                 'country' => 'Countryland',
                 'email' => 'testuser@example.com',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('0000'),
             ]);
         }
     }

@@ -1,11 +1,13 @@
 <?php
 
-    namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Api;
 
+    use App\Http\Controllers\Controller;
     use App\Models\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Hash;
     use function Laravel\Prompts\password;
+    use \Illuminate\Http\JsonResponse;
 
     class UserController extends Controller
     {
@@ -14,7 +16,6 @@
             $users = User::all();
 
             return response()->json($users);
-            //return view('users.index', compact('users'));
         }
 
         public function create()
@@ -65,17 +66,16 @@
             $user = User::findOrFail($id);
 
             return response()->json($user);
-            //return view('users.show', compact('user'));
         }
 
         public function edit($id)
         {
             $user = User::findOrFail($id);
 
-            return view('users.edit', compact('user'));
+            return response()->json(['message' => 'Utilisateur a été mis à jour avec succès.']);
         }
 
-        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+        public function update(Request $request, $id): JsonResponse
         {
             // Validation
             $request->validate([
