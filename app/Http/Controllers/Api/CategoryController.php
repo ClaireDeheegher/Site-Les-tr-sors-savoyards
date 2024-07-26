@@ -24,20 +24,20 @@ class CategoryController extends Controller //Classe qui va servir de controller
         return $category;
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $category = new Category();
         $category->name = $request->name;
         $category->save();
+
         return response()->json($category);
     }
 
-
-    public function update(Request $request, Category $id)
+    public function update(Request $request)
     {
-
-        $id->name = $request->name;
-        $id->save();
+        $category = Category::where('id', $request->id)->first();
+        $category->name = $request->name;
+        $category->save();
 
         return $id;
 
