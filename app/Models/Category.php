@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Builder;
 
-class Categorie extends Model
+class Category extends Model
 {
     public $timestamps = false;
 
@@ -16,8 +17,6 @@ class Categorie extends Model
     protected $fillable = ['name'];
 
     public static function find(string $id) {}
-
-    public static function findOrFail($id) {}
 
     public function produits(): HasMany
     {
