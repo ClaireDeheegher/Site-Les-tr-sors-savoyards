@@ -77,7 +77,8 @@ form {
 /* Aligner le bouton "Register" à droite */
 .button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 /* Alertes */

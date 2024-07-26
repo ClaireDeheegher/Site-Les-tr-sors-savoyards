@@ -7,7 +7,7 @@
     <div class="container">
         <h1>Sign In</h1>
 
-        <form action="{{ route('login') }}" method="POST" id="loginForm">
+        <form action="{{ route('auth.login') }}" method="POST" id="loginForm">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>

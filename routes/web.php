@@ -10,8 +10,13 @@ use App\Http\Controllers\View\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+// Routes pour le login
+Route::get('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('login', [AuthController::class, 'doLogin'])->name('auth.login.post');
+Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Routes pour les carts
 Route::prefix('carts')->group(function () {
@@ -33,53 +38,31 @@ Route::prefix('users')->group(function () {
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
-//->Middleware('auth:sanctum')
-
 // Routes pour les products
-route::prefix('/products')->group(function () {
+Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
-    Route::get('/{id}', [ProductController::class, 'ShowProduits']);
-    Route::post('/', [ProductController::class, 'products']);
-    Route::put('/{id}', [ProductController::class, 'update']);
-    Route::delete('/{id}', [ProductController::class, 'destroy']);
+    Route::get('/{id}', [ProductController::class, 'show']);
+    Route::post('/', [ProductController::class, 'store'])->name('products.store');
+    Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 // Routes pour les catégories
-Route::prefix('/category')->group(function () {
+Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
-    Route::get('/{id}', [CategoryController::class, 'showCategory']);
-    Route::post('/', [CategoryController::class, 'create']);
-    Route::put('/{id}', [CategoryController::class, 'update']);
-    Route::delete('/{id}', [CategoryController::class, 'delete']);
+    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/{id}', [CategoryController::class, 'show'])->name('categories.show');
 });
-
-// Routes pour les paniers
-Route::resource('carts', CartController::class);
 
 // Routes pour les commandes
-Route::prefix('/orders')->group(function () {
+Route::prefix('orders')->group(function () {
     Route::get('/', [OrderController::class, 'index']);
     Route::get('/{id}', [OrderController::class, 'show']);
-    Route::post('/', [OrderController::class, 'create']);
-    Route::put('/{id}', [OrderController::class, 'update']);
-    Route::delete('/{id}', [OrderController::class, 'destroy']);
-});
-
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'doLogin']);
-
-route::prefix('/products')->group(function () {
-    Route::post('/', [ProductController::class, 'products'])->name('product.create');
-    Route::put('/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-});
-Route::prefix('/category')->group(function () {
-    Route::get('/', [CategoryController::class, 'index']);
-    Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
-    Route::post('/', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/{id}/update', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::post('/{id}', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('/', [CategoryController::class, 'delete'])->name('category.delete');
-    Route::get('/{id}', [CategoryController::class, 'showProductList'])->name('category.show');
-
+    Route::post('/', [OrderController::class, 'store'])->name('orders.store');
+    Route::put('/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
