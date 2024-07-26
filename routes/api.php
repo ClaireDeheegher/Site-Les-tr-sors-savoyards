@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\CategorieController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,14 +23,15 @@ Route::prefix('carts')->group(function () {
 
 // Routes pour les utilisateurs
 Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index')->withoutMiddleware('auth:sanctum');
-    Route::get('/create', [UserController::class, 'create'])->name('users.create')->withoutMiddleware('auth:sanctum');
-    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->withoutMiddleware('auth:sanctum');
-    Route::put('/{user}', [UserController::class, 'update'])->name('users.update')->withoutMiddleware('auth:sanctum');
-    Route::post('/', [UserController::class, 'store'])->name('users.store')->withoutMiddleware('auth:sanctum');
-    Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->withoutMiddleware('auth:sanctum');
-    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->withoutMiddleware('auth:sanctum');
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::post('/', [UserController::class, 'store'])->name('users.store');
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
+//->Middleware('auth:sanctum')
 
 // Routes pour les produits
 route::prefix('/products')->group(function () {
@@ -64,8 +65,3 @@ Route::prefix('/orders')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'doLogin']);
-
-// Exemple de route pour obtenir l'utilisateur authentifié
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->Middleware('auth:sanctum');
