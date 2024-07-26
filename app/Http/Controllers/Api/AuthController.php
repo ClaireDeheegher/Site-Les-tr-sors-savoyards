@@ -22,7 +22,6 @@
                 $user = Auth::user();
                 $token = $user->createToken('Personal Access Token')->plainTextToken;
 
-                // Créer un cookie avec le token
                 $cookie = cookie('auth_token', $token, 60 * 24, '/', null, true, true, false, 'Strict');
 
             return response()->json([
