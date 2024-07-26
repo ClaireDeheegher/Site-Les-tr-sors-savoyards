@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,14 +19,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
             $token = $user->createToken('Personal Access Token')->plainTextToken;
+
+            // Créer un cookie avec le token
+            $cookie = cookie('auth_token', $token, 60 * 24, '/', null, true, true, false, 'Strict');
 
             return response()->json([
                 'message' => 'Connexion réussie!',
                 'token' => $token,
                 'user' => $user,
-            ], 200);
+            ], 200)->withCookie($cookie);
         }
 
         return response()->json([
@@ -37,8 +40,11 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
 
+        // Effacer le cookie
+        $cookie = \Cookie::forget('auth_token');
+
         return response()->json([
             'message' => 'Déconnexion réussie!',
-        ], 200);
+        ], 200)->withCookie($cookie);
     }
 }
