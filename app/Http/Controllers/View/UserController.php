@@ -5,6 +5,7 @@
 
     use App\Http\Controllers\Controller;
     use App\Models\User;
+    use Illuminate\Http\JsonResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Hash;
     use function Laravel\Prompts\password;
@@ -76,7 +77,7 @@
             return view('users.edit', compact('user'));
         }
 
-        public function update(Request $request, $id): \Illuminate\Support\Stringable|object|__anonymous
+        public function update(Request $request, $id): JsonResponse
         {
             // Validation
             $request->validate([
