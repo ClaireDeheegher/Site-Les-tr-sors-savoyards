@@ -43,7 +43,7 @@ route::prefix('/products')->group(function () {
 });
 
 // Routes pour les catégories
-Route::prefix('/categorie')->group(function () {
+Route::prefix('/category')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{id}', [CategoryController::class, 'showProductList']);
     Route::post('/', [CategoryController::class, 'create']);
