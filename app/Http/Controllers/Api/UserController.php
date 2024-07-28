@@ -86,7 +86,7 @@ class UserController extends Controller
         return response()->json(['message' => 'Utilisateur mis à jour avec succès.']);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $user = User::findOrFail($id);
         $user->delete();

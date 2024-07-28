@@ -14,7 +14,7 @@ Route::prefix('carts')->group(function () {
     Route::get('/{id}', [CartController::class, 'show']);
     Route::post('/', [CartController::class, 'store']);
     Route::put('/{id}', [CartController::class, 'update']);
-    Route::delete('/{id}', [CartController::class, 'destroy']);
+    Route::delete('/{id}', [CartController::class, 'delete']);
 });
 
 // Routes pour les utilisateurs
@@ -25,7 +25,7 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/', [UserController::class, 'store'])->name('users.store');
     Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/{user}', [UserController::class, 'delete'])->name('users.delete');
 });
 //->Middleware('auth:sanctum')
 
@@ -35,7 +35,7 @@ route::prefix('/products')->group(function () {
     Route::get('/{id}', [ProductController::class, 'ShowProduits']);
     Route::post('/', [ProductController::class, 'products']);
     Route::put('/{id}', [ProductController::class, 'update']);
-    Route::delete('/{id}', [ProductController::class, 'destroy']);
+    Route::delete('/{id}', [ProductController::class, 'delete']);
 });
 
 // Routes pour les catégories
@@ -56,7 +56,7 @@ Route::prefix('/orders')->group(function () {
     Route::get('/{id}', [OrderController::class, 'show']);
     Route::post('/', [OrderController::class, 'create']);
     Route::put('/{id}', [OrderController::class, 'update']);
-    Route::delete('/{id}', [OrderController::class, 'destroy']);
+    Route::delete('/{id}', [OrderController::class, 'delete']);
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

@@ -14,21 +14,21 @@
 
         <table class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de Naissance</th>
-                <th>Genre</th>
-                <th>Téléphone</th>
-                <th>Adresse</th>
-                <th>Adresse 2</th>
-                <th>Code Postal</th>
-                <th>Ville</th>
-                <th>Pays</th>
-                <th>Email</th>
-                <th>Email Vérifié</th>
-                <th>Action</th>
-            </tr>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de Naissance</th>
+                    <th>Genre</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Adresse 2</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
+                    <th>Email</th>
+                    <th>Email Vérifié</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
             @foreach ($users as $user)
@@ -48,7 +48,10 @@
                     <td>
                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Voir</a>
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Modifier</a>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+
+
+
+                        <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>

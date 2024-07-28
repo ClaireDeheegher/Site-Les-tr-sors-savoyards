@@ -24,7 +24,7 @@ Route::prefix('carts')->group(function () {
     Route::get('/{id}', [CartViewController::class, 'show']);
     Route::post('/', [CartViewController::class, 'store']);
     Route::put('/{id}', [CartViewController::class, 'update']);
-    Route::delete('/{id}', [CartViewController::class, 'destroy']);
+    Route::delete('/{id}', [CartViewController::class, 'delete']);
 });
 
 // Routes pour les users
@@ -35,7 +35,7 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}', [UserViewController::class, 'update'])->name('users.update');
     Route::post('/', [UserViewController::class, 'store'])->name('users.store');
     Route::get('/{user}', [UserViewController::class, 'show'])->name('users.show');
-    Route::delete('/{user}', [UserViewController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/{user}', [UserViewController::class, 'delete'])->name('users.delete');
 });
 
 // Routes pour les products
@@ -44,7 +44,7 @@ Route::prefix('products')->group(function () {
     Route::get('/{id}', [ProductViewController::class, 'show']);
     Route::post('/', [ProductViewController::class, 'store'])->name('products.store');
     Route::put('/{id}', [ProductViewController::class, 'update'])->name('products.update');
-    Route::delete('/{id}', [ProductViewController::class, 'destroy'])->name('products.destroy');
+    Route::delete('/{id}', [ProductViewController::class, 'delete'])->name('products.delete');
 });
 
 // Routes pour les catégories
@@ -54,7 +54,7 @@ Route::prefix('categories')->group(function () {
     Route::post('/', [CategoryViewController::class, 'store'])->name('categories.store');
     Route::get('/{id}/edit', [CategoryViewController::class, 'edit'])->name('categories.edit');
     Route::put('/{id}', [CategoryViewController::class, 'update'])->name('categories.update');
-    Route::delete('/{id}', [CategoryViewController::class, 'destroy'])->name('categories.destroy');
+    Route::delete('/{id}', [CategoryViewController::class, 'delete'])->name('categories.delete');
     Route::get('/{id}', [CategoryViewController::class, 'show'])->name('categories.show');
 });
 
@@ -64,5 +64,5 @@ Route::prefix('orders')->group(function () {
     Route::get('/{id}', [OrderViewController::class, 'show']);
     Route::post('/', [OrderViewController::class, 'store'])->name('orders.store');
     Route::put('/{id}', [OrderViewController::class, 'update'])->name('orders.update');
-    Route::delete('/{id}', [OrderViewController::class, 'destroy'])->name('orders.destroy');
+    Route::delete('/{id}', [OrderViewController::class, 'delete'])->name('orders.delete');
 });

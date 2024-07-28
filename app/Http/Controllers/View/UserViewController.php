@@ -117,7 +117,7 @@ class UserViewController extends Controller
         return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
