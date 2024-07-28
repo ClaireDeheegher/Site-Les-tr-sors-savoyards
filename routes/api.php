@@ -9,10 +9,6 @@ use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('carts')->group(function () {
     Route::get('/', [CartController::class, 'index']);
     Route::get('/{id}', [CartController::class, 'show']);

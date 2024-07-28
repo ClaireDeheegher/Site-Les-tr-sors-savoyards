@@ -12,7 +12,7 @@ body {
 }
 
 /* Conteneur principal */
-.container {
+#login-form .container {
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
@@ -22,20 +22,20 @@ body {
 }
 
 /* Titre */
-h1 {
+#login-form h1 {
     font-size: 24px;
     margin-bottom: 1rem;
     color: #007bff;
 }
 
 /* Formulaire */
-form {
+#login-form form {
     display: flex;
     flex-direction: column;
 }
 
 /* Champs de saisie */
-.form-control {
+#login-form .form-control {
     padding: 10px;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
@@ -43,20 +43,20 @@ form {
     font-size: 16px;
 }
 
-.form-control:focus {
+#login-form .form-control:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
 }
 
 /* Étiquette */
-.form-label {
+#login-form .form-label {
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
 /* Boutons */
-.btn {
+#login-form .btn {
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -65,24 +65,24 @@ form {
     transition: background-color 0.3s;
 }
 
-.btn-primary {
+#login-form .btn-primary {
     background-color: #007bff;
     color: #fff;
 }
 
-.btn-primary:hover {
+#login-form .btn-primary:hover {
     background-color: #0056b3;
 }
 
 /* Aligner le bouton "Register" à droite */
-.button {
+#login-form .button {
     display: flex;
     justify-content: center;
     padding-top: 10px;
 }
 
 /* Alertes */
-.alert {
+#login-form .alert {
     margin-top: 1rem;
     padding: 10px;
     border-radius: 4px;

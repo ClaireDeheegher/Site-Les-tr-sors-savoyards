@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
-class ProductController extends Controller
+class ProductViewController extends Controller
 {
     public function index(): Collection
     {

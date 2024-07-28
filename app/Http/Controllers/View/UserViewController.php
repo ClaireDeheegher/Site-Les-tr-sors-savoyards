@@ -1,23 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\View;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserViewController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return response()->json($users);
+        return view('users.index', compact('users'));
+    }
+
+    public function create()
+    {
+        return view('users.create');
     }
 
     public function store(Request $request)
     {
-
+        // Validation
         $request->validate([
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -33,7 +38,8 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user = User::create([
+        // Création de l'utilisateur
+        $user = new User([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
             'birthday' => $request->input('birthday'),
@@ -48,17 +54,27 @@ class UserController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        return response()->json(['message' => 'Utilisateur créé avec succès!', 'user' => $user]);
+        $user->save();
+
+        // Redirection avec un message de succès
+        return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès!');
     }
 
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return response()->json($user);
+        return view('users.show', compact('user'));
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
+        // Validation
         $request->validate([
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -75,15 +91,30 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-        $user->fill($request->except('password'));
 
+        // Mise à jour des champs
+        $user->name = $request->get('name');
+        $user->lastname = $request->get('lastname');
+        $user->birthday = $request->get('birthday');
+        $user->gender = $request->get('gender');
+        $user->phone = $request->get('phone');
+        $user->address = $request->get('address');
+        $user->address2 = $request->get('address2');
+        $user->zipcode = $request->get('zipcode');
+        $user->town = $request->get('town');
+        $user->country = $request->get('country');
+        $user->email = $request->get('email');
+
+        // Si un nouveau mot de passe est fourni, le mettre à jour
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->input('password'));
+            $user->password = Hash::make($request->get('password'));
         }
 
+        // Enregistrement des modifications
         $user->save();
 
-        return response()->json(['message' => 'Utilisateur mis à jour avec succès.']);
+        // Redirection vers la page d'index avec un message de succès
+        return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     public function destroy($id)
@@ -91,6 +122,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response()->json(['message' => 'Utilisateur supprimé avec succès.']);
+        return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
     }
 }

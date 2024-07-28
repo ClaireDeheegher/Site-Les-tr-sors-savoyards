@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div id="login-form" class="container">
         <h1>Sign In</h1>
 
         <form action="{{ route('auth.login') }}" method="POST" id="loginForm">

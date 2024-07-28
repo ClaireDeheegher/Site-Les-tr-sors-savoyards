@@ -17,7 +17,7 @@
             //User::factory()->count(10)->create();
 
             User::create([
-                'name' => 'Test User',
+                /*'name' => 'Test User',
                 'lastname' => 'Doe',
                 'birthday' => '1990-01-01',
                 'gender' => 'M',
@@ -28,7 +28,20 @@
                 'town' => 'Townsville',
                 'country' => 'Countryland',
                 'email' => 'testuser@example.com',
-                'password' => Hash::make('0000'),
+                'password' => Hash::make('00000000'),*/
+
+                'name'=> 'John',
+                'lastname'=> 'Doe',
+                'birthday'=> '1990-01-01',
+                'gender'=> 'M',
+                'phone'=> '1234567890',
+                'address'=> '123 Main St',
+                'address2'=> 'Apt 4B',
+                'zipcode'=> '12345',
+                'town'=> 'City',
+                'country'=> 'Country',
+                'email'=> 'john.doe@example.com',
+                'password' => Hash::make('securePassword123'),
             ]);
         }
     }

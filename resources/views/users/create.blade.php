@@ -1,8 +1,7 @@
-<!-- resources/views/users/create.blade.php -->
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div id="create-user" class="container">
         <h1>Create User</h1>
 
         <form action="{{ route('users.store') }}" method="POST">
@@ -27,7 +26,6 @@
                     <option value="F">Female</option>
                 </select>
             </div>
-            <!-- Include other fields as necessary -->
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone</label>
                 <input type="text" class="form-control" id="phone" name="phone" required>
@@ -59,6 +57,10 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
