@@ -3,11 +3,12 @@
 
 @section ('content')
     <h1>Catégories</h1>
-    <section>
+
+    {{-- <section>
         <a href="{{route('category.create')}}" class="btn btn-info btn-sm">Ajouter une catégorie</a>
 
 
-    </section>
+    </section> --}}
     <section>
     @foreach($category as $categories)
 

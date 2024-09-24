@@ -16,14 +16,14 @@ class ProductController extends Controller
         return produits::all();
     }
 
-    public function ShowProduits(string $id)
+    public function ShowProduits(int $id)
     {
-        $produit = Produits::find($id);
+        $produit = Produits::findOrFail($id);
         if ($produit) {
-            return $produit->nom;
+            return response()->json($produit);
         }
 
-        return null;
+        return response()->json(['message' => 'Product not found'], 404);
     }
 
     public function products(Request $request): JsonResponse

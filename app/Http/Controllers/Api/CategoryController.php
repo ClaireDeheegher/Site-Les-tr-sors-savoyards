@@ -15,14 +15,22 @@ class CategoryController extends Controller //Classe qui va servir de controller
         return response()->json($category);
     }
 
-    public function showProductList(Category $id)
+    public function showProductList($id)
     {
-        $category = Category::where('id', $id)->get();
+        // Récupère la catégorie par ID
+        $category = Category::findOrFail($id);
 
-        $category->products()->where('categories_id', $id)->get();
+        // Accède aux produits de la catégorie
+        $products = $category->products;
 
-        return $category;
+        // Retourne la catégorie et ses produits
+        return response()->json([
+            'category' => $category,
+            'products' => $products
+        ]);
     }
+
+
 
     public function create(Request $request)
     {
